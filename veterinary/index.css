@@ -1,0 +1,98 @@
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    align-items: center;
+}
+
+.form{
+    display: flex;
+    flex-wrap: flex;
+    gap: 2rem;
+
+    border: 3px solid;
+    border-color: black;
+    background-color: #F7E5C5;
+
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
+    justify-content: center;
+
+    max-width: fit-content;
+    max-height: fit-content;
+
+    border-radius: 1rem;
+}
+
+.owner_information_container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: flex;
+    gap: .5rem;
+}
+
+.pet_information_container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: flex;
+    gap: .5rem;
+}
+
+.appointment_information_container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: flex;
+    gap: .5rem;
+}
+
+.input {
+    border: 1px solid;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    outline-color: #0c0f0a;
+    transition: 0.3s;
+    
+}
+
+.input:focus {
+    outline-color: #e8e8e8;
+    background: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5,
+                inset -20px -20px 60px #ffffff;
+    transition: 0.3s;
+}
+
+.button {
+    --bg: #0c0f0a;
+    --hover-bg: #FF6F59;
+    --hover-text: #0c0f0a;
+    
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid var(--bg);
+    border-radius: 4px;
+    padding: 0.8em 2em;
+    background: var(--bg);
+    transition: 0.2s;
+  }
+  
+  .button:hover {
+    color: var(--hover-text);
+    transform: translate(-0.25rem, -0.25rem);
+    background: var(--hover-bg);
+    box-shadow: 0.25rem 0.25rem var(--bg);
+  }
+  
+  .button:active {
+    transform: translate(0);
+    box-shadow: none;
+  }
+  
