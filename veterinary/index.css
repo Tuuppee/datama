@@ -9,7 +9,7 @@ body {
     align-items: center;
 }
 
-.form{
+.container{
     display: flex;
     flex-wrap: flex;
     gap: 2rem;
@@ -96,7 +96,47 @@ body {
     box-shadow: none;
   }
   
-.container-column {
+  .container-column {    
     display: flex;
     flex-direction: column;
+    justify-content: center; /* This line centers the flex items vertically */
+    align-items: center; /* Optionally, you can also center items horizontally */
+}
+
+
+.parent-container{
+    display: flex;
+    
+}
+
+/* Alert Success */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-success hr {
+    border-top-color: #c9e2b3;
+}
+
+.alert-success .alert-link {
+    color: #2b542c;
+}
+/* Alert Success */
+
+/* Margins */
+#pet_information_margin {
+    margin-right: 3%;
+}
+
+#appointment_information_margin{
+ margin-bottom: 4%;
 }

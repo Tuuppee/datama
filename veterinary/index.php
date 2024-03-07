@@ -1,3 +1,12 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $success = "<strong id='alertSucess'>Success!</strong> Your action was successful.";
+} else {
+    $success = "";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,12 +37,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
-    <div class = "container">
+
+
+<div class = "container-column">
+        <div class="alert alert-success" role="alert">
+            <?php echo $success; ?>
+        </div>
+    
+
+<div class = "parent-container">
+
+    <div class = "container" id="pet_information_margin">
     <form action="" method="post" class="form">
-
-
-
-        <div class = "owner_information_container">
+    <div class = "owner_information_container">
             <h2>Owner Information</h2>
             <input type="text" id="first_name" name="first_name" class = "firstname input" placeholder = "First Name" required ><br>
             <input type="text" id="last_name" name="last_name" class = "lastname input" placeholder = "Last Name" required><br>
@@ -48,65 +64,68 @@ if ($conn->connect_error) {
             <input type="marital_status" id="marital_status" name="marital_status" class = "marital_status input" placeholder = "Marital Status" required><br>
             <input type="blood_type" id="blood_type" name="blood_type" class = "blood_type input" placeholder = "Blood Type" required><br>
             <input type="address" id="address" name="address" class = "address input" placeholder = "Address" required><br>
-        </div>
+        </div>        
+    </div>
     
+    <div class = "container-column">
+        <div class = "container" id="appointment_information_margin">
+            
 
+            <div class = "appointment_information_container">
+                <h2>Appointment Information</h2>
+                <label for="veterinarian" class = "vet_label">Veterinarian:</label>
 
+                <select id="veterinarian" name="veterinarian" class = "veterinarian input" required>
+                    <?php
+                    $stmt = $conn->prepare("SELECT veterinarian_id, CONCAT(first_name, ' ', last_name) AS name FROM Veterinarians_tbl");
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<option value="' . $row['veterinarian_id'] . '">' . $row['name'] . '</option>';
+                    }
+                    ?>
+                </select><br>
 
-        <div class = "pet_information_container">
-            <h2>Pet Information</h2>
-            <input type="text" id="pet_name" name="pet_name" class = "petname input" placeholder = "Pet Name" required><br>
-            <input type="text" id="species" name="species" class = "species input" placeholder = "Species" required><br>
-            <input type="text" id="breed" name="breed" class = "breed input" placeholder = "Breed" required><br>
-            <input type="number" id="age" name="age" class = "age input" placeholder = "Age" required><br>
-            <label for="gender" class = "gender_label">Gender:</label>
-            <select id="gender" name="gender" class = "gender input" required>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select><br>
-        </div>
+                <label for="appointment_date">Appointment Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" class = "date" required><br>
+                <label for="appointment_time">Appointment Time:</label>
+                <input type="time" id="appointment_time" name="appointment_time" class = "time" required><br>
+                <label for="service" class = "service_label">Service:</label>
 
+                <select id="service" name="service" class = "service" required>
 
+                    <?php
+                    $stmt = $conn->prepare("SELECT service_id, name FROM Services_tbl");
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<option value="' . $row['service_id'] . '">' . $row['name'] . '</option>';
+                    }
+                    ?>
+                </select><br>
 
-        <div class = "appointment_information_container">
-            <h2>Appointment Information</h2>
-            <label for="veterinarian" class = "vet_label">Veterinarian:</label>
+                <label for="reason" class = "reason_label" >Reason:</label>
+                <textarea id="reason" name="reason" required></textarea><br>
 
-            <select id="veterinarian" name="veterinarian" class = "veterinarian input" required>
-                <?php
-                $stmt = $conn->prepare("SELECT veterinarian_id, CONCAT(first_name, ' ', last_name) AS name FROM Veterinarians_tbl");
-                $stmt->execute();
-                $result = $stmt->get_result();
-                while ($row = $result->fetch_assoc()) {
-                    echo '<option value="' . $row['veterinarian_id'] . '">' . $row['name'] . '</option>';
-                }
-                ?>
-            </select><br>
-
-            <label for="appointment_date">Appointment Date:</label>
-            <input type="date" id="appointment_date" name="appointment_date" class = "date" required><br>
-            <label for="appointment_time">Appointment Time:</label>
-            <input type="time" id="appointment_time" name="appointment_time" class = "time" required><br>
-            <label for="service" class = "service_label">Service:</label>
-
-            <select id="service" name="service" class = "service" required>
-
-                <?php
-                $stmt = $conn->prepare("SELECT service_id, name FROM Services_tbl");
-                $stmt->execute();
-                $result = $stmt->get_result();
-                while ($row = $result->fetch_assoc()) {
-                    echo '<option value="' . $row['service_id'] . '">' . $row['name'] . '</option>';
-                }
-                ?>
-            </select><br>
-
-            <label for="reason" class = "reason_label" >Reason:</label>
-            <textarea id="reason" name="reason" required></textarea><br>
-
-            <input type="submit" value="Submit" class = "button">
+                <input type="submit" value="Submit" class = "button">
             </div>
-        </form>
+        </div>
+        
+        <div class = "container">
+        <div class = "pet_information_container">
+                <h2>Pet Information</h2>
+                <input type="text" id="pet_name" name="pet_name" class = "petname input" placeholder = "Pet Name" required><br>
+                <input type="text" id="species" name="species" class = "species input" placeholder = "Species" required><br>
+                <input type="text" id="breed" name="breed" class = "breed input" placeholder = "Breed" required><br>
+                <input type="number" id="age" name="age" class = "age input" placeholder = "Age" required><br>
+                <label for="gender" class = "gender_label">Gender:</label>
+                <select id="gender" name="gender" class = "gender input" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br>
+            </div>        
+        </div>
+    </form>
 
             <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -169,14 +188,12 @@ if ($conn->connect_error) {
         $date_created = date("Y-m-d");
         $stmt->execute();
 
-        echo "<p class = 'success'>Appointment successfully submitted!</p>";
-
         $stmt->close();
         $conn->close();
     }
     ?>
     </div>
-
+</div>
     
 
 </body>
