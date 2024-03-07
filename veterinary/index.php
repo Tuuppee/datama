@@ -121,7 +121,7 @@ if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO Owners_tbl (first_name, last_name, phone_number, email, middle_name, DOB) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO owners_tbl (first_name, last_name, phone_number, email, middle_name, DOB) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $first_name, $last_name, $phone_number, $email, $middle_name, $DOB);
 
         $first_name = $_POST['first_name'];
@@ -140,7 +140,7 @@ if ($conn->connect_error) {
 
         $owner_id = $conn->insert_id;
 
-        $stmt = $conn->prepare("INSERT INTO Patients_tbl (name, species, breed, age, gender, owner_id) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO patients_tbl (name, species, breed, age, gender, owner_id) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssiss", $pet_name, $species, $breed, $age, $gender, $owner_id);
 
         $pet_name = $_POST['pet_name'];
@@ -152,7 +152,7 @@ if ($conn->connect_error) {
 
         $patient_id = $conn->insert_id;
 
-        $stmt = $conn->prepare("INSERT INTO Appointments_tbl (patient_id, veterinarian_id, appointment_date, appointment_time, reason, service_id) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO appointments_tbl (patient_id, veterinarian_id, appointment_date, appointment_time, reason, service_id) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("iissss", $patient_id, $veterinarian_id, $appointment_date, $appointment_time, $reason, $service_id);
 
         $veterinarian_id = $_POST['veterinarian'];
@@ -162,7 +162,7 @@ if ($conn->connect_error) {
         $service_id = $_POST['service'];
         $stmt->execute();
 
-        $stmt = $conn->prepare("INSERT INTO Invoices_tbl (appointment_id, date_created, service_id) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO invoices_tbl (appointment_id, date_created, service_id) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $appointment_id, $date_created, $service_id);
         $appointment_id = $conn->insert_id;
 

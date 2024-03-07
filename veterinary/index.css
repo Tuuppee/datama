@@ -96,3 +96,7 @@ body {
     box-shadow: none;
   }
   
+.container-column {
+    display: flex;
+    flex-direction: column;
+}
