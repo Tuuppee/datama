@@ -28,11 +28,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
-    <div class = "container">
+<div class = "container">
     <form action="" method="post" class="form">
-
-
-
         <div class = "owner_information_container">
             <h2>Owner Information</h2>
             <input type="text" id="first_name" name="first_name" class = "firstname input" placeholder = "First Name" required ><br>
@@ -49,10 +46,14 @@ if ($conn->connect_error) {
             <input type="blood_type" id="blood_type" name="blood_type" class = "blood_type input" placeholder = "Blood Type" required><br>
             <input type="address" id="address" name="address" class = "address input" placeholder = "Address" required><br>
         </div>
+    </form>
+</div>
     
 
 
 
+<div class = "container-column">
+    <form action="" method="post" class="form">
         <div class = "pet_information_container">
             <h2>Pet Information</h2>
             <input type="text" id="pet_name" name="pet_name" class = "petname input" placeholder = "Pet Name" required><br>
@@ -65,9 +66,11 @@ if ($conn->connect_error) {
                 <option value="Female">Female</option>
             </select><br>
         </div>
+    </form>
 
 
 
+    <form action="" method="post" class="form">
         <div class = "appointment_information_container">
             <h2>Appointment Information</h2>
             <label for="veterinarian" class = "vet_label">Veterinarian:</label>
@@ -121,7 +124,7 @@ if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO Owners_tbl (first_name, last_name, phone_number, email, middle_name, DOB) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO owners_tbl (first_name, last_name, phone_number, email, middle_name, DOB) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $first_name, $last_name, $phone_number, $email, $middle_name, $DOB);
 
         $first_name = $_POST['first_name'];
@@ -175,7 +178,7 @@ if ($conn->connect_error) {
         $conn->close();
     }
     ?>
-    </div>
+</div>
 
     
 
