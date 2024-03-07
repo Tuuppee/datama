@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+
 </head>
 <body>
 
@@ -48,6 +49,7 @@ if ($conn->connect_error) {
             <input type="blood_type" id="blood_type" name="blood_type" class = "blood_type input" placeholder = "Blood Type" required><br>
             <input type="address" id="address" name="address" class = "address input" placeholder = "Address" required><br>
         </div>
+    
 
 
 
